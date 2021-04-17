@@ -8,14 +8,15 @@ let ctx = canvas.getContext("2d");
 const choreList = ["laundry", "window", "trash", "computer"];
 let choreSelected = "";
 
-let chores = new Chores(canvas.width, canvas.height);
+let chores = new Chores(canvas);
 
 new InputHandler(chores);
 
 let lastTime = 0;
+let transitioning = false;
 
 //Images
-let transitionImg = [document.getElementById("blackBall"), document.getElementById("blackTri"), document.getElementById("blackSquare")];
+let transitionImg = [document.getElementById("blackSquare"), document.getElementById("blackBall"), document.getElementById("blackTri")];
 
 let transition = new Transition(transitionImg, canvas.width, canvas.height);
 
@@ -26,9 +27,10 @@ function gameLoop(timeStamp) {
   lastTime = timeStamp;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  transition.update();
-  transition.draw(ctx);
+  if (transition.transitioning) {
+    transition.update();
+    transition.draw(ctx);
+  }
 
 
   requestAnimationFrame(gameLoop);

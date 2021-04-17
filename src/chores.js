@@ -1,14 +1,21 @@
 export default class Chores {
-  constructor(gameWidth, gameHeight) {
-    this.gameHeight = gameHeight;
+  constructor(canvas) {
+    this.canvas = canvas;
 
-    this.gameWidth = gameWidth;
+
+    this.gameHeight = canvas.height;
+
+    this.gameWidth = canvas.width;
 
     this.mouseX = 300;
     this.mouseY = 300;
   }
 
   draw(ctx) {
+    return;
+  }
+
+  update(deltaTime) {
     return;
   }
 
@@ -19,18 +26,26 @@ export default class Chores {
   stopKey(keyCode) {
     alert("Keyup: " + keycode);
   }
-
-  getMouse(event) {
-    //if (browser == "f" || browser == "m") {
-    //this.mouseX = event.clientX - stage.offsetLeft + document.documentElement.scrollLeft;
-    //this.mouseY = event.clientY - stage.offsetTop + document.documentElement.scrollTop;
-    //}
-    //else 
-    //{
-    this.mouseX = event.clientX - stage.offsetLeft + document.body.scrollLeft;
-    this.mouseY = event.clientY - stage.offsetTop + document.body.scrollTop;
-    //}
-    alert("Mouse Position: x: " + this.mouseX + " y: " + this.mouseY);
+  clamp(n, min, max) {
+    if (n > max) {
+      return max;
+    } else if (n < min) {
+      return min
+    } else {
+      return n;
+    }
   }
+  getMouse(event, browser) {
+    if (browser == "f" || browser == "m") {
+      this.mouseX = event.clientX - this.canvas.offsetLeft + document.documentElement.scrollLeft + this.gameWidth / 2;
+      this.mouseY = event.clientY - this.canvas.offsetTop + document.documentElement.scrollTop + this.gameHeight / 2;
+    }
+    else {
+      this.mouseX = event.clientX - this.canvas.offsetLeft + document.body.scrollLeft + this.gameWidth / 2;
+      this.mouseY = event.clientY - this.canvas.offsetTop + document.body.scrollTop + this.gameHeight / 2;
+    }
+    alert("Mouse Position: x: " + this.clamp(this.mouseX, 0, this.gameWidth) + " y: " + this.clamp(this.mouseY, 0, this.gameHeight));
+  }
+
 
 }

@@ -6,13 +6,14 @@ export default class Transition {
     this.gameHeight = gameHeight;
 
     this.frame = 0;
-    this.imgNum = 0;
+    this.imgNum = 2;
     this.size = 20 * this.frame;
 
     this.reverse = false;
+    this.transitioning = false;
   }
   draw(ctx) {
-    this.size = 20 * this.frame;
+    this.size = 20 + (20 * this.imgNum) * this.frame;
 
     ctx.drawImage(this.imgs[this.imgNum], (this.gameWidth / 2) - (this.size / 2), (this.gameHeight / 2) - (this.size / 2), this.size, this.size);
   }
@@ -24,9 +25,9 @@ export default class Transition {
       this.reverse = true;
       this.frame--;
     }
-    if (this.frame < 0) {
-      this.reverse = false;
+    if (this.frame <= 0) {
+      this.transitioning = false;
     }
-    
+
   }
 }

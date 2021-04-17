@@ -28,7 +28,7 @@ export default class InputHandler {
       chores.stopKey(event.keyCode);
     });
     document.addEventListener("click", (event) => {
-      chores.getMouse(event);
+      chores.getMouse(event, this.browser);
     }, false);
   }
 
