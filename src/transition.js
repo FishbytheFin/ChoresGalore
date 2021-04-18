@@ -13,7 +13,7 @@ export default class Transition {
     this.transitioning = false;
   }
   draw(ctx) {
-    this.size = 20 + (20 * this.imgNum) * this.frame;
+    this.size = (20 + (10 * this.imgNum)) * this.frame;
 
     ctx.drawImage(this.imgs[this.imgNum], (this.gameWidth / 2) - (this.size / 2), (this.gameHeight / 2) - (this.size / 2), this.size, this.size);
   }
