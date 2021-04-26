@@ -91,7 +91,7 @@ export default class Chores {
     ctx.fillStyle = "black";
     ctx.font = "25px fontdiner swanky";
     ctx.fillText(this.choreText[this.currentChore], 5, 600);
-    ctx.fillText("Score: "+this.gameData.score.toString(), 100, 30)
+    ctx.fillText("Score: "+this.gameData.score.toString(), 5, 30)
   }
 
   update(deltaTime) {

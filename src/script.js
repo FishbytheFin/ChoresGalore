@@ -71,13 +71,16 @@ function gameLoop(timeStamp) {
   }
 
   if (chores.choreOver) {
-    chores.gameData.score += 100;
     transition.transitioning = true;
     transition.reverse = false;
-    choreSelected = choreList[Math.floor(Math.random() * choreList.length)];
-    chores.choreStart(choreSelected);
-    chores.choreOver = false;
+    if (transition.frame >= 99) {
+      chores.gameData.score += 100;
+      choreSelected = choreList[Math.floor(Math.random() * choreList.length)];
+      chores.choreStart(choreSelected);
+      chores.choreOver = false;
+    }
   }
+
   if (chores.choreLost) {
     if (chores.gameData.boomSize > 900 && choreSelected == "computer") {
       chores.frame = 0;
